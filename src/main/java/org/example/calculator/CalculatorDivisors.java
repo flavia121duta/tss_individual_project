@@ -2,6 +2,7 @@ package org.example.calculator;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import static java.lang.Math.floor;
 
 import static java.lang.Math.sqrt;
 
@@ -12,8 +13,8 @@ public class CalculatorDivisors {
         int numberOfDivisors = 2; // divisors (1 and the number itself)
         for (int d = 2; d <= sqrt(x); d++) {
             if (x % d == 0) numberOfDivisors += 2;
-            if (d * d == x) numberOfDivisors--;
         }
+        if (sqrt(x) == floor(sqrt(x)) numberOfDivisors--;
         return numberOfDivisors;
     }
 
