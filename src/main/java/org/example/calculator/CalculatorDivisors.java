@@ -8,20 +8,24 @@ import static java.lang.Math.sqrt;
 
 public class CalculatorDivisors {
     public static int getNumberOfDivisorsOf(int x) {
-        if (x == 1 || x == 2) return x;
+        if (x == 1 || x == 2) 
+            return x;
 
         int numberOfDivisors = 2; // divisors (1 and the number itself)
         for (int d = 2; d <= sqrt(x); d++) {
-            if (x % d == 0) numberOfDivisors += 2;
+            if (x % d == 0) 
+                numberOfDivisors += 2;
         }
-        if (sqrt(x) == floor(sqrt(x)) numberOfDivisors--;
+        if (sqrt(x) == floor(sqrt(x)) 
+            numberOfDivisors--;
         return numberOfDivisors;
     }
 
     public static int getNumberWithMaximumDivisorsFromInterval(int n) {
         int maxi = 0, foundNumber = 1;
         try {
-            if (n < 1 || n > 1e5) throw new Exception("Error: Invalid number");
+            if (n < 1 || n > 1e5)
+                throw new Exception("Error: Invalid number");
             for (int x = 1; x <= n; x++) {
                 int nr = getNumberOfDivisorsOf(x);
                 if (nr > maxi) {
