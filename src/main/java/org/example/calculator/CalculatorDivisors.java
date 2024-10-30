@@ -11,12 +11,12 @@ public class CalculatorDivisors {
         if (x == 1 || x == 2) 
             return x;
 
-        int numberOfDivisors = 2; // divisors (1 and the number itself)
+        int numberOfDivisors = 2; // improper divisors (1 and the number itself)
         for (int d = 2; d <= sqrt(x); d++) {
             if (x % d == 0) 
                 numberOfDivisors += 2;
         }
-        if (sqrt(x) == floor(sqrt(x)) 
+        if (sqrt(x) == floor(sqrt(x)))
             numberOfDivisors--;
         return numberOfDivisors;
     }
@@ -45,13 +45,16 @@ public class CalculatorDivisors {
             // handle invalid input for n when the user enters test instead of number
             while (!validInput) {
                 try {
-                    System.out.print("n = ");
+                    System.out.print("Enter a number between 1 and 100000: ");
                     n = console.nextInt();
-                    if (n >= 1 && n <= 1e5)
+                    if (n >= 1 && n <= 1e5) {
                         validInput = true;
+                    } else {
+                        System.out.println("Invalid integer. Try again.");
+                    }
                 } catch (InputMismatchException e) {
-                    System.out.println("Invalid input! Please enter an integer.");
-                    console.next(); // Clear the invalid input
+                    System.out.println("Invalid input. Please enter an integer."); // the invut is not an integer
+                    console.next(); // clear the invalid input from the console
                 }
             }
 
