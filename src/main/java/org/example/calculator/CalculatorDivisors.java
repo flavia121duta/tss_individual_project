@@ -23,21 +23,14 @@ public class CalculatorDivisors {
 
     public static int getNumberWithMaximumDivisorsFromInterval(int n) {
         int maxi = 0, foundNumber = 1;
-        try {
-            if (n < 1 || n > 1e5)
-                throw new Exception("Error: Invalid number");
-            for (int x = 1; x <= n; x++) {
-                int nr = getNumberOfDivisorsOf(x);
-                if (nr > maxi) {
-                    maxi = nr;
-                    foundNumber = x;
-                }
+        for (int x = 1; x <= n; x++) {
+            int nr = getNumberOfDivisorsOf(x);
+            if (nr > maxi) {
+                maxi = nr;
+                foundNumber = x;
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return -1;
         }
-
+        
         return foundNumber;
     }
 
@@ -54,7 +47,8 @@ public class CalculatorDivisors {
                 try {
                     System.out.print("n = ");
                     n = console.nextInt();
-                    validInput = true;
+                    if (n >= 1 && n <= 1e5)
+                        validInput = true;
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input! Please enter an integer.");
                     console.next(); // Clear the invalid input
@@ -64,12 +58,7 @@ public class CalculatorDivisors {
             // calculate the number with maximum divisors in interval [1, n]
             // and print if it exists
             int result = getNumberWithMaximumDivisorsFromInterval(n);
-            if (result == -1) {
-                // error message
-                System.out.println("Try again.");
-            } else {
-                System.out.println("The number with the maximum divisors in the interval [1, " + n + "] is " + result);
-            }
+            System.out.println("The number with the maximum divisors in the interval [1, " + n + "] is " + result);
 
             // ask if the user wants to continue
             System.out.print("Do you want to continue? Type y or n: ");
