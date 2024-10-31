@@ -8,6 +8,9 @@ import static java.lang.Math.sqrt;
 
 public class CalculatorDivisors {
     public static int getNumberOfDivisorsOf(int x) {
+//        if (x < 1)
+//            return -1;
+
         if (x == 1 || x == 2) 
             return x;
 
@@ -23,6 +26,10 @@ public class CalculatorDivisors {
 
     public static int getNumberWithMaximumDivisorsFromInterval(int n) {
         int maxi = 0, foundNumber = 1;
+
+        if(n < 1)
+            return -1;
+
         for (int x = 1; x <= n; x++) {
             int nr = getNumberOfDivisorsOf(x);
             if (nr > maxi) {
@@ -53,7 +60,7 @@ public class CalculatorDivisors {
                         System.out.println("Invalid integer. Try again.");
                     }
                 } catch (InputMismatchException e) {
-                    System.out.println("Invalid input. Please enter an integer."); // the invut is not an integer
+                    System.out.println("Invalid input. Please enter an integer."); // the input is not an integer
                     console.next(); // clear the invalid input from the console
                 }
             }

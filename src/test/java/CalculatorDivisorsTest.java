@@ -17,7 +17,8 @@ public class CalculatorDivisorsTest {
         System.setOut(new PrintStream(outputStream));
     }
 
-    // getNumberOfDivisorsOf
+    //------------------------------------------
+
     @Test
     public void testGetNumberOfDivisorsOf() {
         // 1 is an edge case, with only one divisor, itself
@@ -35,10 +36,13 @@ public class CalculatorDivisorsTest {
         // 9 is a perfect square and its divisors are 1, 3, 9
         assertEquals(3, CalculatorDivisors.getNumberOfDivisorsOf(9));
 
-        // TODO: use boundary values and other values from the document
+        // D20 = {1, 2, 4, 5, 10, 20}
+        assertEquals(6, CalculatorDivisors.getNumberOfDivisorsOf(20));
+
+        // D12 = {1, 2, 3, 4, 6, 12}
+        assertEquals(6, CalculatorDivisors.getNumberOfDivisorsOf(12));
     }
 
-    // getNumberWithMaximumDivisorsFromInterval
 
     @Test
     public void testGetNumberWithMaximumDivisors() {
@@ -59,21 +63,26 @@ public class CalculatorDivisorsTest {
         // exception for n = -5 (negative)
         assertEquals(-1, CalculatorDivisors.getNumberWithMaximumDivisorsFromInterval(-5));
 
-        // TODO: use boundary values and other values from the document
+        // n = 20
+        assertEquals(12, CalculatorDivisors.getNumberWithMaximumDivisorsFromInterval(20));
+
+        // n = 12
+        assertEquals(12, CalculatorDivisors.getNumberWithMaximumDivisorsFromInterval(12));
     }
 
     //------------------------------------------
 
-    // solve
     @Test
     public void testSolveWithValidInputAndExit() {
-        String simulatedInput = "5\nn\n"; // Valid input followed by 'n'
+        // valid input followed by 'n' (no)
+        // n = 5, s = n
+        String simulatedInput = "5\nn\n";
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
         CalculatorDivisors.solve();
 
         String programOutput = outputStream.toString();
-        assertTrue(programOutput.contains("n ="));
+        assertTrue(programOutput.contains("Enter a number between 1 and 100000: "));
         assertTrue(programOutput.contains("The number with the maximum divisors in the interval [1, 5] is"));
         assertTrue(programOutput.contains("Do you want to continue? Type y or n:"));
         assertTrue(programOutput.contains("Program finished."));
@@ -83,13 +92,13 @@ public class CalculatorDivisorsTest {
     public void testSolveWithMultipleValidInputsAndThenExit() {
         // start with n = 4 ---> s = y (valid inputs)
         // then n = 6 ---> s = n (valid inputs)
-        String simulatedInput = "4\ny\n6\nn\n";
+        String simulatedInput = "20\ny\n12\nn\n";
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
         CalculatorDivisors.solve();
 
         String programOutput = outputStream.toString();
-        assertTrue(programOutput.contains("n ="));
+        assertTrue(programOutput.contains("Enter a number between 1 and 100000: "));
         assertTrue(programOutput.contains("The number with the maximum divisors in the interval [1, 4] is"));
         assertTrue(programOutput.contains("Do you want to continue? Type y or n:"));
         assertTrue(programOutput.contains("The number with the maximum divisors in the interval [1, 6] is"));
