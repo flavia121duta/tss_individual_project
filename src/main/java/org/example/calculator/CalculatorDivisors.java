@@ -8,9 +8,6 @@ import static java.lang.Math.sqrt;
 
 public class CalculatorDivisors {
     public static int getNumberOfDivisorsOf(int x) {
-//        if (x < 1)
-//            return -1;
-
         if (x == 1 || x == 2) 
             return x;
 
@@ -25,10 +22,7 @@ public class CalculatorDivisors {
     }
 
     public static int getNumberWithMaximumDivisorsFromInterval(int n) {
-        int maxi = 0, foundNumber = 1;
-
-        if(n < 1)
-            return -1;
+        int maxi = 0, foundNumber = -1;
 
         for (int x = 1; x <= n; x++) {
             int nr = getNumberOfDivisorsOf(x);
@@ -66,7 +60,6 @@ public class CalculatorDivisors {
             }
 
             // calculate the number with maximum divisors in interval [1, n]
-            // and print if it exists
             int result = getNumberWithMaximumDivisorsFromInterval(n);
             System.out.println("The number with the maximum divisors in the interval [1, " + n + "] is " + result);
 

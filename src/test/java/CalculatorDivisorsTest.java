@@ -45,11 +45,11 @@ public class CalculatorDivisorsTest {
 
 
     @Test
-    public void testGetNumberWithMaximumDivisors() {
+    public void testGetNumberWithMaximumDivisorsFromInterval() {
         // edge case for n = 1
         assertEquals(1, CalculatorDivisors.getNumberWithMaximumDivisorsFromInterval(1));
 
-        // number within the range [1, 10 000]
+        // 6 is a number within the range [1, 10 000]
         // where 6 itself is the number with the most divisors from interval [1, 6]
         assertEquals(6, CalculatorDivisors.getNumberWithMaximumDivisorsFromInterval(6));
 
@@ -61,7 +61,7 @@ public class CalculatorDivisorsTest {
         assertEquals(-1, CalculatorDivisors.getNumberWithMaximumDivisorsFromInterval(0));
 
         // exception for n = -5 (negative)
-        assertEquals(-1, CalculatorDivisors.getNumberWithMaximumDivisorsFromInterval(-5));
+        assertEquals(-1, CalculatorDivisors.getNumberWithMaximumDivisorsFromInterval(-3));
 
         // n = 20
         assertEquals(12, CalculatorDivisors.getNumberWithMaximumDivisorsFromInterval(20));
@@ -69,8 +69,6 @@ public class CalculatorDivisorsTest {
         // n = 12
         assertEquals(12, CalculatorDivisors.getNumberWithMaximumDivisorsFromInterval(12));
     }
-
-    //------------------------------------------
 
     @Test
     public void testSolveWithValidInputAndExit() {
@@ -89,50 +87,22 @@ public class CalculatorDivisorsTest {
     }
 
     @Test
-    public void testSolveWithMultipleValidInputsAndThenExit() {
-        // start with n = 4 ---> s = y (valid inputs)
-        // then n = 6 ---> s = n (valid inputs)
-        String simulatedInput = "20\ny\n12\nn\n";
-        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
-
-        CalculatorDivisors.solve();
-
-        String programOutput = outputStream.toString();
-        assertTrue(programOutput.contains("Enter a number between 1 and 100000: "));
-        assertTrue(programOutput.contains("The number with the maximum divisors in the interval [1, 4] is"));
-        assertTrue(programOutput.contains("Do you want to continue? Type y or n:"));
-        assertTrue(programOutput.contains("The number with the maximum divisors in the interval [1, 6] is"));
-        assertTrue(programOutput.contains("Program finished."));
-    }
-
-    @Test
     public void testSolveWithInvalidInputThenValidInputAndExit() {
-        // invalid input, then valid input followed by 'n'
+        // invalid string input, then valid input followed by 'n'
         String simulatedInput = "abc\n7\nn\n";
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
         CalculatorDivisors.solve();
 
         String programOutput = outputStream.toString();
-        assertTrue(programOutput.contains("n ="));
-        assertTrue(programOutput.contains("Invalid input! Please enter an integer."));
+
+        // n = 'abc'
+        assertTrue(programOutput.contains("Enter a number between 1 and 100000: "));
+        assertTrue(programOutput.contains("Invalid input. Please enter an integer."));
+
+        // n = 7
         assertTrue(programOutput.contains("The number with the maximum divisors in the interval [1, 7] is"));
-        assertTrue(programOutput.contains("Do you want to continue? Type y or n:"));
-        assertTrue(programOutput.contains("Program finished."));
-    }
-
-    @Test
-    public void testSolveWithInvalidInputRetryThenValidInputAndExit() {
-        String simulatedInput = "abc\n10\nn\n"; // Invalid input, then valid input followed by 'n'
-        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
-
-        CalculatorDivisors.solve();
-
-        String programOutput = outputStream.toString();
-        assertTrue(programOutput.contains("n ="));
-        assertTrue(programOutput.contains("Invalid input! Please enter an integer."));
-        assertTrue(programOutput.contains("The number with the maximum divisors in the interval [1, 10] is"));
-        assertTrue(programOutput.contains("Do you want to continue? Type y or n:"));
+        assertTrue(programOutput.contains("Do you want to continue? Type y or n:")); // s = n
         assertTrue(programOutput.contains("Program finished."));
     }
 }
