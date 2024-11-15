@@ -65,4 +65,20 @@ public class EquivalencePartitioningTest {
                 "The number with the maximum divisors in the interval [1, 20] is 12"));
         assertTrue(programOutput.contains("Program finished."));
     }
+
+
+    @Test
+    public void testSolveWithValidInputsAndThenExit() {
+        // n = 6 ---> s = n
+        String simulatedInput = "6\nn";
+        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
+
+        CalculatorDivisors.solve();
+
+        String programOutput = outputStream.toString();
+        assertTrue(programOutput.contains("Enter a number between 1 and 100000: "));
+        assertTrue(programOutput.contains(
+                "The number with the maximum divisors in the interval [1, 6] is 6"));
+        assertTrue(programOutput.contains("Do you want to continue? Type y or n:"));
+    }
 }

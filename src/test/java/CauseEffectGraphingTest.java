@@ -28,7 +28,7 @@ public class CauseEffectGraphingTest {
         // n = 20, s = y to continue the program
         // n = 100, s = n to stop the program
 
-        String simulatedInput = "-10\n20\ny\n20\nn";
+        String simulatedInput = "-10\n20\ny\n100\nn";
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
         CalculatorDivisors.solve();
